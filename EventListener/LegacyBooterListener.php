@@ -4,7 +4,7 @@ namespace Theodo\Evolution\Bundle\LegacyWrapperBundle\EventListener;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Theodo\Evolution\Bundle\LegacyWrapperBundle\Kernel\LegacyKernelInterface;
 
@@ -36,9 +36,9 @@ class LegacyBooterListener implements EventSubscriberInterface
     }
 
     /**
-     * @param GetResponseEvent $event
+     * @param RequestEvent $event
      */
-    public function onKernelRequest(GetResponseEvent $event)
+    public function onKernelRequest(RequestEvent $event)
     {
         if (!$this->kernel->isBooted()) {
             $this->kernel->boot($this->container);
