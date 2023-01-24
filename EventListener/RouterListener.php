@@ -63,11 +63,12 @@ class RouterListener implements EventSubscriberInterface
             }
 
             $response = $this->legacyKernel->handle($event->getRequest(), $event->getRequestType(), true);
-            if ($response->getStatusCode() !== 404) {
+            // Allow Legacy to send its 404
+            // if ($response->getStatusCode() !== 404) {
                 $event->setResponse($response);
 
                 return $event;
-            }
+            //}
         }
     }
 
